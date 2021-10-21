@@ -1,0 +1,43 @@
+body {
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+  background-color: var(--body-color);
+}
+
+* {transition: 0.3s ease-in-out; font-family: 'Montserrat', sans-serif;}
+button:focus {outline: none;}
+
+::-webkit-scrollbar {background: rgba(255, 255, 255, 0); width: 8px;}
+::-webkit-scrollbar-thumb {background: var(--scrollbar-thumb-color); border-radius: 0px;}
+::-webkit-scrollbar-track-piece {background: transparent;}
+
+#main-block {
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 40px;
+	background: maroon;
+	text-align: center;
+	width: 100%;
+	padding-bottom: 20px;
+}
+
+#keyboard-block {
+	width: 90%;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+#keyboard-block > div {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+}
+#keyboard-block > div > div {
+	padding: 8px;
+	border: 2px solid #c0c0c0;
+	font-size: 16pt;
+}
+
