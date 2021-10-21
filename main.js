@@ -1,11 +1,12 @@
 let data = {
 	board_blc: document.getElementById("keyboard-block"),
 	oneKey: Number(0),
-	twoKey: Number(0)
+	twoKey: Number(0),
+	capsLock: Boolean(false),
 }
 
 let latin_base = [
-	["`", 1, "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace"],
+	["`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace"],
 	["Tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\"],
 	["CapsLock", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "Enter"], 
 	["Shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "Shift"],
@@ -26,10 +27,14 @@ let drawKeys = (x, obj) => {
 
 		if (i == "Backspace") div.setAttribute("id", "key-backspace");
 		else if (i == "Tab") div.setAttribute("id", "key-tab");
-		else if (i == "CapsLock") div.setAttribute("id", "key-capslock");
+		else if (i == "CapsLock") {
+			UpLowFunc();
+			div.setAttribute("id", "key-capslock");
+		}
 		else if (i == "Enter") div.setAttribute("id", "key-enter");
 		else if (i == "Shift") div.setAttribute("id", "key-shift");
 		else if (i == "Ctrl") div.setAttribute("id", "key-ctrl");
+		else if (i == "Alt") div.setAttribute("id", "key-alt");
 		else if (i == " ") div.setAttribute("id", "key-space");
 		div.setAttribute("class", "board-key");
 
@@ -37,6 +42,12 @@ let drawKeys = (x, obj) => {
 		data.board_blc.append(obj);
 	}
 }
+
+
+function UpLowFunc() {
+	
+}
+
  
 window.onload = () => {
 	drawKeys(Number(0), document.createElement("div"));
@@ -49,7 +60,7 @@ window.onload = () => {
 window.addEventListener("keydown", (e) => {
 	let boardKeys = document.querySelectorAll(".board-key");
 
-	//console.log(e.key, e.keyCode, data.oneKey);
+	console.log(e.key, e.keyCode, data.oneKey);
 
 	if (e.key == "Alt" && data.oneKey == Number(1)) {
 		console.log("UUU")

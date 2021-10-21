@@ -1,7 +1,7 @@
 :root {
 	--border-radius-int: 7px;
-	--box-shadow-one: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
-	--box-shadow-two: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px;
+	--body-color: #313131;
+	--box-shadow-one: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px;
 }
 
 body {
@@ -22,7 +22,6 @@ button:focus {outline: none;}
 	margin-left: auto;
 	margin-right: auto;
 	padding-top: 40px;
-	background: maroon;
 	text-align: center;
 	width: 100%;
 	padding-bottom: 20px;
@@ -31,7 +30,7 @@ button:focus {outline: none;}
 #keyboard-block {
 	margin-left: auto;
 	margin-right: auto;
-	border: 2px solid blue;
+	border: 2px solid transparent;
 	width: 90%;
 	padding: 10px;
 	display: flex;
@@ -48,15 +47,21 @@ button:focus {outline: none;}
 
 }
 #keyboard-block > div > div {
-	padding: 8px 18px;
+	padding: 8px 14px;
+	background: white;
 	border: 2px solid white;
 	font-size: 18pt;
 	margin-right: 8px;
 	border-radius: var(--border-radius-int);
-	box-shadow: var(--box-shadow-two);
+	box-shadow: var(--box-shadow-one);
 }
-#key-tab {width: 90px;}
+#key-tab {width: 110px;}
 #key-shift {width: 105px;}
-#key-space {width: 600px;}
+#key-space {width: 500px;}
 
+#keyboard-block > div > div:not(#key-tab, #key-shift, #key-space, #key-ctrl, #key-backspace, #key-capslock, #key-enter, #key-alt) {
+	width: 30px;
+	text-align: center;
+	padding: 8px;
+}
 
