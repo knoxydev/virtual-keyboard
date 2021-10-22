@@ -1,5 +1,5 @@
 :root {
-	--border-radius-int: 7px;
+	--border-radius-int: 12px;
 	--body-color: #313131;
 	--box-shadow-one: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px;
 }
@@ -64,4 +64,3 @@ button:focus {outline: none;}
 	text-align: center;
 	padding: 8px;
 }
-
