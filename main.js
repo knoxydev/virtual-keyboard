@@ -43,7 +43,6 @@ let render = (x, obj) => {
 	}
 }
 
-
 function upLowFunc() {
 	function reDraw(x, y) {
 		let base = (data.langState == "EN") ? latin_base[x] : cyrillic_base[x];
@@ -103,15 +102,13 @@ window.onload = () => startDraw();
 window.addEventListener("keydown", (e, codes = ["KeyQ", "KeyW"]) => {
 	let boardKeys = document.querySelectorAll(".board-key");
 	if (e.ctrlKey && e.shiftKey) langFunc();
-	//console.log(e.key, e.keyCode, data.oneKey, data.keyShort);
-
 	if (e.key == "CapsLock") upLowFunc();
 
 	for (i of boardKeys) {
 		data.oneKey = (i.innerHTML == 1) ? Number(1) : Number(0);
 		data.twoKey = (i.innerHTML == "1") ? Number(1) : Number(0);
-		if (i.innerHTML == e.key) i.style = "background: #2C2C2C; color: white";
-		if (e.keyCode == 17 && i.innerHTML == "Ctrl") i.style = "background: #2C2C2C; color: white";
+		if (i.innerHTML == e.key) i.style = "border: 2px solid white; color: black; background: white;";
+		if (e.keyCode == 17 && i.innerHTML == "Ctrl") i.style = "border: 2px solid white; color: black; background: white;";
 	}
 });
 
@@ -120,8 +117,8 @@ window.addEventListener("keyup", (e) => {
 		let boardKeys = document.querySelectorAll(".board-key");
 
 		for (i of boardKeys) {
-			if (i.innerHTML == e.key) i.style = "background: white; color: black";
-			if (e.keyCode == 17 && i.innerHTML == "Ctrl") i.style = "background: white; color: black";
+			if (i.innerHTML == e.key) i.style = "border: 2px solid #c0c0c0; color: #c0c0c0; background: var(--grey)";
+			if (e.keyCode == 17 && i.innerHTML == "Ctrl") i.style = "border: 2px solid #c0c0c0; color: #c0c0c0; background: var(--grey)";
 		}
-	}, 25);
+	}, 50);
 });

@@ -1,7 +1,8 @@
 :root {
-	--border-radius-int: 12px;
+	--border-radius-int: 14px;
 	--body-color: #313131;
 	--box-shadow-one: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px;
+	--grey: #2C2C2C;
 }
 
 body {
@@ -21,22 +22,19 @@ button:focus {outline: none;}
 #main-block {
 	margin-left: auto;
 	margin-right: auto;
-	padding-top: 40px;
+	padding-top: 120px;
 	text-align: center;
 	width: 100%;
-	padding-bottom: 20px;
+	user-select: none;
 }
 
 #keyboard-block {
 	margin-left: auto;
 	margin-right: auto;
-	border: 2px solid transparent;
-	width: 90%;
-	padding: 10px;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	user-select: none;
 }
 
 #keyboard-block > div {
@@ -44,12 +42,12 @@ button:focus {outline: none;}
 	flex-direction: row;
 	justify-content: center;
 	padding: 8px;
-
 }
 #keyboard-block > div > div {
 	padding: 8px 14px;
-	background: white;
-	border: 2px solid white;
+	background: var(--grey);
+	border: 2px solid #c0c0c0;
+	color: #c0c0c0;
 	font-size: 18pt;
 	margin-right: 8px;
 	border-radius: var(--border-radius-int);
@@ -63,4 +61,7 @@ button:focus {outline: none;}
 	width: 30px;
 	text-align: center;
 	padding: 8px;
+}
+#key-tab, #key-shift, #key-space, #key-ctrl, #key-backspace, #key-capslock, #key-enter, #key-alt {
+	text-align: left;
 }
