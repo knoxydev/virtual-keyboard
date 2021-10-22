@@ -3,6 +3,7 @@ let data = {
 	oneKey: Number(0),
 	twoKey: Number(0),
 	capsLockInt: Number(0),
+	langState: String("EN"),
 }
 
 let latin_base = [
@@ -13,15 +14,17 @@ let latin_base = [
 	["Ctrl", "Alt", " ", "Alt"]
 ];
 let cyrillic_base = [
-	["ё", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "BacksPace"],
+	["ё", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace"],
 	["Tab", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "\\"],
 	["CapsLock", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "Enter"], 
-	["Shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".", "Shift2"],
-	["Ctrl", "Alt", "Space", "Alt"]
+	["Shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".", "Shift"],
+	["Ctrl", "Alt", " ", "Alt"]
 ];
 
-let drawKeys = (x, obj) => {
-	for (i of latin_base[x]) {
+let render = (x, obj) => {
+	let base = (data.langState == "EN") ? latin_base[x] : cyrillic_base[x];
+
+	for (i of base) {
 		let div = document.createElement("div");
 		div.innerHTML = i;
 
@@ -43,37 +46,37 @@ let drawKeys = (x, obj) => {
 
 function upLowFunc() {
 	function reDraw(x, y) {
+		let base = (data.langState == "EN") ? latin_base[x] : cyrillic_base[x];
+
 		let mainBtn = ["Backspace", "Tab", "CapsLock", "Enter", "Shift", "Ctrl", "Alt"];
 
 		if (y == Number(1)) {
-			latin_base[x].forEach((item, index, arr) => {
+			base.forEach((item, index, arr) => {
 				let symb = mainBtn.indexOf(item);
 				if (symb == -1) arr[index] = arr[index].toUpperCase();
 			});
 		} else {
-			latin_base[x].forEach((item, index, arr) => {
+			base.forEach((item, index, arr) => {
 				let symb = mainBtn.indexOf(item);
 				if (symb == -1) arr[index] = arr[index].toLowerCase();
 			});
 		}
 	}
 
-	if (data.capsLockInt % 2 == 0) {
-		reDraw(Number(0), Number(1));
-		reDraw(Number(1), Number(1));
-		reDraw(Number(2), Number(1));
-		reDraw(Number(3), Number(1));
-		reDraw(Number(4), Number(1));
+	function reDrawFunc(x) {
+		reDraw(Number(0), Number(x));
+		reDraw(Number(1), Number(x));
+		reDraw(Number(2), Number(x));
+		reDraw(Number(3), Number(x));
+		reDraw(Number(4), Number(x));
+	}
 
+	if (data.capsLockInt % 2 == 0) {
+		reDrawFunc(1);
 		data.board_blc.innerHTML = " ";
 		startDraw();
 	} else {
-		reDraw(Number(0), Number(2));
-		reDraw(Number(1), Number(2));
-		reDraw(Number(2), Number(2));
-		reDraw(Number(3), Number(2));
-		reDraw(Number(4), Number(2));
-
+		reDrawFunc(2);
 		data.board_blc.innerHTML = " ";
 		startDraw();
 	}
@@ -82,25 +85,27 @@ function upLowFunc() {
 }
 
 function startDraw() {
-	drawKeys(Number(0), document.createElement("div"));
-	drawKeys(Number(1), document.createElement("div"));
-	drawKeys(Number(2), document.createElement("div"));
-	drawKeys(Number(3), document.createElement("div"));
-	drawKeys(Number(4), document.createElement("div"));
+	render(Number(0), document.createElement("div"));
+	render(Number(1), document.createElement("div"));
+	render(Number(2), document.createElement("div"));
+	render(Number(3), document.createElement("div"));
+	render(Number(4), document.createElement("div"));
+}
+
+function langFunc() {
+	data.langState = (data.langState == "EN") ? data.langState = "RU" : data.langState = "EN";
+	data.board_blc.innerHTML = " ";
+	startDraw();
 }
 
 window.onload = () => {
 	startDraw();
 }
 
-window.addEventListener("keydown", (e) => {
+window.addEventListener("keydown", (e, codes = ["KeyQ", "KeyW"]) => {
 	let boardKeys = document.querySelectorAll(".board-key");
-
-	console.log(e.key, e.keyCode, data.oneKey);
-
-	if (e.key == "Alt" && data.oneKey == Number(1)) {
-		console.log("UUU");
-	}
+	if (e.ctrlKey && e.shiftKey) langFunc();
+	//console.log(e.key, e.keyCode, data.oneKey, data.keyShort);
 
 	if (e.key == "CapsLock") upLowFunc();
 
@@ -108,9 +113,8 @@ window.addEventListener("keydown", (e) => {
 		data.oneKey = (i.innerHTML == 1) ? Number(1) : Number(0);
 		data.twoKey = (i.innerHTML == "1") ? Number(1) : Number(0);
 		if (i.innerHTML == e.key) i.style = "background: #2C2C2C; color: white";
-
+		if (e.keyCode == 17 && i.innerHTML == "Ctrl") i.style = "background: #2C2C2C; color: white";
 	}
-
 });
 
 window.addEventListener("keyup", (e) => {
@@ -119,7 +123,7 @@ window.addEventListener("keyup", (e) => {
 
 		for (i of boardKeys) {
 			if (i.innerHTML == e.key) i.style = "background: white; color: black";
+			if (e.keyCode == 17 && i.innerHTML == "Ctrl") i.style = "background: white; color: black";
 		}
-	
 	}, 25);
 });
