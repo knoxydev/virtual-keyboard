@@ -98,9 +98,7 @@ function langFunc() {
 	startDraw();
 }
 
-window.onload = () => {
-	startDraw();
-}
+window.onload = () => startDraw();
 
 window.addEventListener("keydown", (e, codes = ["KeyQ", "KeyW"]) => {
 	let boardKeys = document.querySelectorAll(".board-key");
