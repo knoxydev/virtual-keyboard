@@ -6,4 +6,4 @@
 
 ### To change the language, use the hot key `Ctrl + Shift`
 
-![Иллюстрация к проекту](https://github.com/nkr413/virtual-keyboard/blob/main/markdown-pic/pic.png)
+![Иллюстрация к проекту](https://github.com/knoxydev/virtual-keyboard/blob/main/markdown-pic/pic.png)
